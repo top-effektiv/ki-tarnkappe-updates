@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KI-Tarnkappe: Kundendaten anonymisieren für ChatGPT und Claude</title>
+<meta name="description" content="Die KI-Tarnkappe anonymisiert Namen, Adressen und Nummern auf deinem Rechner, bevor sie bei ChatGPT oder Claude landen. Die Antwort kommt mit den echten Namen zurück. Für Windows, 14 Tage gratis.">
+<meta property="og:title" content="KI-Tarnkappe: Kundendaten raus, bevor die KI sie sieht">
+<meta property="og:description" content="Namen, Adressen und Nummern anonymisieren, bevor sie bei ChatGPT oder Claude landen. Die Antwort kommt mit den echten Namen zurück.">
+<meta property="og:image" content="bilder/ki-tarnkappe-fenster.png">
+<link rel="icon" href="bilder/logo.png">
+<style>
+  :root {
+    --farbe: #0F6B78; --farbe-dunkel: #0A4F59; --farbe-hell: #E7F2F3;
+    --text: #222; --leise: #666; --linie: #E2E2E2; --grund: #F6F6F6; --karte: #fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --text: #EEE; --leise: #AAA; --linie: #333; --grund: #161616; --karte: #1F1F1F; --farbe-hell: #12323A; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+         color: var(--text); background: var(--grund); line-height: 1.6; }
+  a { color: inherit; }
+  .huelle { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+  /* Kopfleiste */
+  .kopf { position: sticky; top: 12px; z-index: 5; margin-top: 12px; }
+  .kopf nav { display: flex; align-items: center; gap: 18px; background: var(--karte);
+              border: 1px solid var(--linie); border-radius: 14px; padding: 10px 16px; }
+  .marke { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; text-decoration: none; }
+  .marke img { width: 30px; height: 30px; border-radius: 7px; }
+  .kopf .links { margin-left: auto; display: flex; gap: 18px; font-size: 15px; align-items: center; }
+  .kopf .links a { text-decoration: none; color: var(--leise); }
+  .kopf .links a:hover { color: var(--text); }
+  .kopf .links a.mini { background: var(--farbe); color: #fff; padding: 6px 14px; border-radius: 999px; font-weight: 600; }
+  .kopf .links a.mini:hover { background: var(--farbe-dunkel); color: #fff; }
+  @media (max-width: 640px) { .kopf .links a.weg { display: none; } }
+
+  /* Held */
+  .held { text-align: center; padding: 44px 0 0; }
+  h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.16; margin: 0 0 14px; letter-spacing: -.02em; }
+  h1 span { color: var(--farbe); }
+  .unter { font-size: clamp(18px, 2.4vw, 22px); color: var(--leise); max-width: 740px; margin: 0 auto; }
+  .strich { position: relative; display: inline-block; font-style: normal; }
+  .strich svg { position: absolute; left: -2%; bottom: -.08em; width: 104%; height: .16em; overflow: visible; }
+  .strich path { fill: none; stroke: currentColor; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round;
+                 stroke-dasharray: 1; stroke-dashoffset: 1; animation: strich-ziehen .6s ease-out .35s forwards; }
+  .unter .strich { color: var(--text); font-weight: 600; }
+  .unter .strich path { animation-delay: 1s; }
+  @keyframes strich-ziehen { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .strich path { animation: none; stroke-dashoffset: 0; } }
+  .aktion { text-align: center; }
+  .knopf { display: inline-flex; align-items: center; gap: 10px; margin-top: 30px; background: var(--farbe); color: #fff;
+           text-decoration: none; font-weight: 700; font-size: 18px; padding: 14px 28px; border-radius: 999px; }
+  .knopf:hover { background: var(--farbe-dunkel); }
+  .aktion .knopf { margin-top: 22px; }
+  .knopf.zweit { background: transparent; color: var(--text); border: 1px solid var(--linie); }
+  .knopf.zweit:hover { background: var(--grund); }
+  .klein { margin-top: 12px; font-size: 14px; color: var(--leise); }
+  .aktion .klein { margin-top: 14px; }
+  .systeme { display: flex; justify-content: center; gap: 18px; margin-top: 14px; font-size: 15px; font-weight: 600; color: var(--text); }
+  .systeme span { display: inline-flex; align-items: center; gap: 7px; }
+  .systeme svg { width: 18px; height: 18px; fill: currentColor; }
+  .systeme .punkt { color: var(--leise); font-weight: 400; margin: 0 -8px; }
+  .systeme .bald { color: var(--leise); font-weight: 400; }
+  .gleich-kaufen { color: var(--leise); font-weight: 400; }
+  .gleich-kaufen:hover { color: var(--text); }
+  .vertrauen { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 18px; font-size: 14px; color: var(--leise); }
+
+  /* Logo-Band */
+  .ueberall { margin: 44px auto 0; padding: 26px 0 28px; text-align: center;
+              border-image: linear-gradient(var(--linie) 0 1px, var(--karte) 1px calc(100% - 1px), var(--linie) calc(100% - 1px)) fill 0 / 0 / 0 100vw; }
+  .ueberall-titel { font-size: 15px; font-weight: 600; color: var(--leise); }
+  .marken { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 26px; margin-top: 16px; }
+  .marken div { width: 66px; }
+  .marken img { display: block; width: 32px; height: 32px; margin: 0 auto; }
+  .marken span { display: block; margin-top: 6px; font-size: 12.5px; color: var(--leise); }
+  @media (max-width: 480px) { .marken { gap: 14px 0; } .marken div { width: 33%; } }
+
+  /* Bild in Fensterrahmen */
+  .buehne { margin: 34px auto 0; max-width: 980px; background: var(--karte); border: 1px solid var(--linie);
+            border-radius: 14px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.08); }
+  .buehne .leiste { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; border-bottom: 1px solid var(--linie); }
+  .buehne .leiste i { width: 11px; height: 11px; border-radius: 50%; background: #DDD; display: block; }
+  .buehne img { display: block; width: 100%; height: auto; }
+  .bildtext { text-align: center; color: var(--leise); font-size: 14px; margin: 12px 0 0; }
+
+  /* Abschnitte */
+  section { padding: 56px 0 8px; scroll-margin-top: 70px; }
+  h2 { font-size: clamp(26px, 4vw, 34px); margin: 0 0 8px; text-align: center; letter-spacing: -.01em; }
+  .zwischen { text-align: center; color: var(--leise); margin: 0 auto 28px; max-width: 640px; }
+  .raster { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .karte { background: var(--karte); border: 1px solid var(--linie); border-radius: 12px; padding: 20px; }
+  .karte h3 { margin: 0 0 6px; font-size: 17px; }
+  .karte p { margin: 0; color: var(--leise); font-size: 15px; }
+  .zeichen { font-size: 22px; margin-bottom: 6px; color: var(--farbe); }
+  .schritt b { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+               background: var(--farbe); color: #fff; margin-bottom: 10px; }
+  .taste { font-family: Consolas, monospace; background: var(--grund); border: 1px solid var(--linie);
+           border-radius: 6px; padding: 1px 7px; font-size: 14px; white-space: nowrap; }
+
+  /* Zwei Wege */
+  .wege { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .weg-karte { background: var(--karte); border: 1px solid var(--linie); border-radius: 12px; padding: 24px; }
+  .weg-karte .schild { display: inline-block; font-size: 12px; font-weight: 700; color: var(--farbe);
+                       background: var(--farbe-hell); padding: 2px 10px; border-radius: 999px; margin-bottom: 10px; }
+  .weg-karte h3 { margin: 0 0 4px; font-size: 20px; }
+  .weg-karte .leise { color: var(--leise); font-size: 15px; margin: 0 0 14px; }
+  .weg-karte ol { margin: 0; padding-left: 20px; } .weg-karte li { margin: 8px 0; }
+  .platzhalter { font-family: Consolas, monospace; font-size: 14px; background: var(--farbe-hell); color: var(--farbe);
+                 border-radius: 5px; padding: 1px 6px; white-space: nowrap; font-weight: 600; }
+
+  table { width: 100%; border-collapse: collapse; background: var(--karte); border: 1px solid var(--linie); border-radius: 12px; overflow: hidden; }
+  td { padding: 12px 16px; border-bottom: 1px solid var(--linie); }
+  tr:last-child td { border-bottom: 0; }
+  td:last-child { text-align: right; }
+
+  /* Preise */
+  .abschluss { text-align: center; padding: 64px 0; }
+  #preise { scroll-margin-top: 96px; }
+  .preise { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 640px; margin: 0 auto 22px; text-align: left; }
+  .preis { background: var(--karte); border: 1px solid var(--linie); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; }
+  .preis.haupt { border-color: var(--farbe); }
+  .preis h3 { margin: 0; font-size: 17px; }
+  .preis .summe { font-size: 34px; font-weight: 700; margin: 6px 0 8px; }
+  .preis .summe span { font-size: 15px; font-weight: 400; color: var(--leise); }
+  .preis p { margin: 0 0 18px; color: var(--leise); font-size: 15px; flex: 1; }
+  .preis .knopf { margin-top: 0; justify-content: center; font-size: 16px; }
+
+  /* Schluss-Aufruf (Webseiten-Standard Muster 1) */
+  .schluss { margin-top: 40px; padding: 72px 0 64px; text-align: center; color: #fff;
+             background: linear-gradient(135deg, var(--farbe) 0%, var(--farbe-dunkel) 100%); }
+  .schluss h2 { font-size: clamp(30px, 5vw, 46px); margin: 0 0 12px; letter-spacing: -.02em; }
+  .schluss .zwischen { color: rgba(255,255,255,.88); margin-bottom: 0; font-size: 18px; }
+  .schluss .knopf { background: #fff; color: var(--farbe); box-shadow: 0 10px 28px rgba(0,0,0,.18); }
+  .schluss .knopf:hover { background: #EEF7F8; }
+  .schluss .systeme { color: #fff; }
+  .schluss-punkte { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 24px; margin-top: 26px;
+                    font-size: 14px; color: rgba(255,255,255,.9); }
+  .schluss-punkte span::before { content: "✓"; margin-right: 7px; font-weight: 700; }
+
+  /* Footer in Spalten (Muster 2) */
+  footer { padding: 56px 0 28px; color: var(--leise); font-size: 14px; }
+  .fuss-raster { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 32px; }
+  .fuss-marke p { margin: 12px 0 0; max-width: 300px; }
+  .fuss-marke .marke { color: var(--text); }
+  footer h4 { margin: 4px 0 12px; font-size: 14px; color: var(--text); }
+  footer ul { list-style: none; margin: 0; padding: 0; }
+  footer li { margin: 0 0 9px; }
+  footer li a { text-decoration: none; }
+  footer li a:hover { color: var(--text); text-decoration: underline; }
+  .fuss-zeile { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 44px;
+                padding-top: 18px; border-top: 1px solid var(--linie); font-size: 13px; }
+  @media (max-width: 760px) { .fuss-raster { grid-template-columns: 1fr 1fr; } .fuss-marke { grid-column: 1 / -1; } }
+</style>
+</head>
+<body>
+
+<div class="huelle kopf">
+  <nav>
+    <a class="marke" href="#"><img src="bilder/logo.png" alt="">KI-Tarnkappe</a>
+    <div class="links">
+      <a class="weg" href="#so-gehts">So geht es</a>
+      <a class="weg" href="#funktionen">Funktionen</a>
+      <a class="weg" href="#datenschutz">Datenschutz</a>
+      <a class="mini" href="https://www.digistore24.com/product/768239">Gratis testen</a>
+    </div>
+  </nav>
+</div>
+
+<main class="huelle">
+  <div class="held">
+    <h1>Kundendaten <em class="strich">raus.<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9 C 45 4, 120 3, 197 6"/></svg></em><br><span>Bevor die KI sie sieht.</span></h1>
+    <p class="unter">Die KI-Tarnkappe anonymisiert Namen, Adressen und Nummern auf deinem Rechner, bevor sie bei ChatGPT oder Claude landen. Die Antwort kommt mit den <em class="strich">echten Namen<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 9 C 45 4, 120 3, 197 6"/></svg></em> zurück.</p>
+  </div>
+
+  <div class="aktion">
+    <a class="knopf" href="https://www.digistore24.com/product/768239">14 Tage gratis testen</a>
+    <div class="klein">Ohne Zahlungsdaten · danach 29 € im Jahr oder 79 € einmalig</div>
+    <div class="systeme"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.6l7.4-1v7H3zM11.4 4.5L21 3.2v8.4h-9.6zM3 12.4h7.4v7.1L3 18.4zM11.4 12.4H21v8.4l-9.6-1.3z"/></svg>Windows</span><span class="punkt">·</span><span class="bald"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS folgt</span><span class="punkt">·</span><a class="gleich-kaufen" href="#preise">oder gleich kaufen ↓</a></div>
+  </div>
+
+  <div class="ueberall">
+    <div class="ueberall-titel">Funktioniert mit jeder KI, in die du Text einfügen kannst</div>
+    <div class="marken">
+      <div><img src="bilder/marken/chatgpt.svg" alt=""><span>ChatGPT</span></div>
+      <div><img src="bilder/marken/claude.svg" alt=""><span>Claude</span></div>
+      <div><img src="bilder/marken/gemini.svg" alt=""><span>Gemini</span></div>
+      <div><img src="bilder/marken/copilot.svg" alt=""><span>Copilot</span></div>
+      <div><img src="bilder/marken/outlook.svg" alt=""><span>Outlook</span></div>
+      <div><img src="bilder/marken/gmail.svg" alt=""><span>Gmail</span></div>
+    </div>
+  </div>
+
+  <div class="buehne">
+    <div class="leiste"><i></i><i></i><i></i></div>
+    <img src="bilder/ki-tarnkappe-fenster.png" alt="Die KI-Tarnkappe: links die Kundenmail, in der Mitte das, was die KI sieht, rechts die gefundenen Namen">
+  </div>
+  <p class="bildtext">Beispiel mit erfundenen Daten: Aus Anna Schulze wird <span class="platzhalter">[Kunde A]</span>, aus der Policennummer <span class="platzhalter">[Police A]</span>. Beträge bleiben stehen.</p>
+  <div class="vertrauen"><span>🔒 Deine Kundendaten verlassen nie deinen Rechner</span><span>⟳ Updates kommen von selbst</span><span>Von TOP effektiv</span></div>
+
+  <section id="so-gehts">
+    <h2>Zwei Wege. Die KI sieht nur Platzhalter.</h2>
+    <p class="zwischen">Mit jeder KI über zwei Tastenkürzel. Mit Claude sogar ganz ohne Kopieren.</p>
+    <div class="wege">
+      <div class="weg-karte">
+        <span class="schild">Mit jeder KI</span>
+        <h3>Zwei Tastenkürzel</h3>
+        <p class="leise">Für ChatGPT, Claude, Gemini, Copilot und jede andere KI, auch im Browser.</p>
+        <ol>
+          <li>Mail, Transkript oder Vertrag kopieren, <span class="taste">Strg</span> + <span class="taste">Alt</span> + <span class="taste">A</span> drücken.</li>
+          <li>Bei der KI einfügen. Sie arbeitet ganz normal, nur mit <span class="platzhalter">[Kunde A]</span> statt dem echten Namen.</li>
+          <li>Antwort kopieren, <span class="taste">Strg</span> + <span class="taste">Alt</span> + <span class="taste">N</span> drücken. In deiner Mail stehen wieder die echten Namen.</li>
+        </ol>
+      </div>
+      <div class="weg-karte">
+        <span class="schild">Mit Claude</span>
+        <h3>Ohne Kopieren</h3>
+        <p class="leise">Einmal mit der Claude-App auf deinem Rechner verbunden, ein Klick.</p>
+        <ol>
+          <li>Du sagst Claude einfach: „Schau dir diese Datei an“ oder „Geh meine neuen Mails durch“.</li>
+          <li>Claude holt sich den Inhalt über die Tarnkappe und sieht nur Platzhalter.</li>
+          <li>Die fertige Antwort landet mit den echten Namen in deiner Zwischenablage. Mails legt Claude als Entwurf an, abschicken tust du selbst.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <h2>Gebaut für alle, die mit Kundendaten arbeiten</h2>
+    <p class="zwischen">Makler, Berater, Steuerberater, Kanzleien: überall, wo Namen und Nummern nicht in die KI gehören.</p>
+    <div class="raster">
+      <div class="karte"><div class="zeichen">⌖</div><h3>Funktioniert überall</h3><p>In Outlook, Word, im Browser und in jedem anderen Programm, in dem du kopieren kannst.</p></div>
+      <div class="karte"><div class="zeichen">◎</div><h3>Erkennt das Wichtige</h3><p>Namen, Adressen, Telefon, Mail-Adressen, IBAN, Policen-, Kunden- und Schadennummern.</p></div>
+      <div class="karte"><div class="zeichen">▤</div><h3>Texte, PDF und Word</h3><p>Auch ganze Dateien: einfach ins Fenster ziehen.</p></div>
+      <div class="karte"><div class="zeichen">✎</div><h3>Deine Grußzeile bleibt stehen</h3><p>Einmal „Über dich“ ausfüllen, dann werden dein Name, deine Firma und deine Nummer nie zu „Kunde A“.</p></div>
+      <div class="karte"><div class="zeichen">●</div><h3>Ampel vor dem Einfügen</h3><p>Sie zeigt dir, wenn irgendwo noch ein Name stehen könnte. Ein Klick, und er ist geschwärzt.</p></div>
+      <div class="karte"><div class="zeichen">⌨</div><h3>Tastenkürzel und Stream Deck</h3><p>Kürzel selbst festlegen. Fertige Tastenbilder für dein Stream Deck sind dabei.</p></div>
+    </div>
+  </section>
+
+  <section id="datenschutz">
+    <h2>Deine Kundendaten verlassen nie deinen Rechner</h2>
+    <p class="zwischen">Keine Cloud, kein Konto, kein Upload. Hier steht ehrlich, was wohin geht.</p>
+    <div class="raster">
+      <div class="karte"><div class="zeichen">🖥</div><h3>Läuft bei dir</h3><p>Erkennen und Ersetzen passieren auf deinem Windows-Rechner. Zur KI geht nur der Text mit Platzhaltern.</p></div>
+      <div class="karte"><div class="zeichen">🔒</div><h3>Namensliste verschlüsselt</h3><p>Welcher Platzhalter zu welchem Namen gehört, liegt verschlüsselt bei dir und löscht sich nach 7 Tagen von selbst.</p></div>
+      <div class="karte"><div class="zeichen">⇅</div><h3>Ins Internet nur zweierlei</h3><p>Die Prüfung deines Lizenzschlüssels und die Suche nach Updates. Beides ohne Kundendaten.</p></div>
+      <div class="karte"><div class="zeichen">§</div><h3>Fachlich: Pseudonymisierung</h3><p>Nur du kannst die echten Namen zurückholen. Ob deine Arbeitsweise insgesamt passt, klärst du mit deinem Datenschutzbeauftragten.</p></div>
+    </div>
+  </section>
+
+  <section id="einrichten">
+    <h2>In einer Minute eingerichtet</h2>
+    <p class="zwischen">Kein Konto, kein Passwort. Bestellnummer und Lizenzschlüssel einmal einfügen, das war es.</p>
+    <div class="raster">
+      <div class="karte schritt"><b>1</b><h3>Gratis testen oder kaufen</h3><p>In der Mail von Digistore steht der Link zum Herunterladen. Datei öffnen, fertig installiert.</p></div>
+      <div class="karte schritt"><b>2</b><h3>Windows-Hinweis wegklicken</h3><p>Zeigt Windows „Der Computer wurde geschützt“: „Weitere Informationen“ → „Trotzdem ausführen“. Das ist bei neuen Programmen normal.</p></div>
+      <div class="karte schritt"><b>3</b><h3>Erste Schritte</h3><p>Freischalten, einmal „Über dich“ ausfüllen, mit einem Beispiel ausprobieren und auf Wunsch mit Claude verbinden. Die Tarnkappe führt dich durch.</p></div>
+    </div>
+  </section>
+
+  <section id="tasten">
+    <h2>Die Tasten</h2>
+    <p class="zwischen">Beide Kürzel kannst du in den Einstellungen ändern. Alles geht auch über das Symbol bei der Uhr.</p>
+    <table>
+      <tr><td>Kopierten Text anonymisieren</td><td><span class="taste">Strg + Alt + A</span></td></tr>
+      <tr><td>Echte Namen zurück</td><td><span class="taste">Strg + Alt + N</span></td></tr>
+    </table>
+  </section>
+
+  <section id="fragen">
+    <h2>Kurz gefragt</h2>
+    <p class="zwischen">Die Antworten auf das, was die meisten wissen wollen.</p>
+    <div class="raster">
+      <div class="karte"><h3>Was kostet die KI-Tarnkappe?</h3><p>Die ersten 14 Tage nichts, ohne Zahlungsdaten. Danach 29 € im Jahr oder einmalig 79 €, jeweils mit allen Updates.</p></div>
+      <div class="karte"><h3>Was passiert nach 14 Tagen?</h3><p>Der Test endet von selbst. Es läuft nichts automatisch weiter und kostet nichts. Mit dem Kauf geht es sofort weiter, deine Einstellungen bleiben.</p></div>
+      <div class="karte"><h3>Gehen meine Kundendaten irgendwohin?</h3><p>Nein. Das Erkennen und Ersetzen passiert auf deinem Rechner. Ins Internet gehen nur Lizenzprüfung und Update-Suche, beides ohne Kundendaten.</p></div>
+      <div class="karte"><h3>Ist das DSGVO-konform?</h3><p>Die Tarnkappe sorgt dafür, dass die KI keine echten Namen und Nummern bekommt. Eine Rechtsberatung ersetzt sie nicht.</p></div>
+      <div class="karte"><h3>Was, wenn sie einen Namen übersieht?</h3><p>Die Ampel zeigt dir, wo noch ein Name stehen könnte. Mit einem Klick schwärzt du ihn nach. Ein kurzer Blick vor dem Einfügen schadet nie.</p></div>
+      <div class="karte"><h3>Geht das auf meinem Firmen-PC?</h3><p>Meistens ja: Die Tarnkappe braucht keine Administrator-Rechte. Sperrt deine Firma neue Programme, hilft deine IT.</p></div>
+      <div class="karte"><h3>Und auf dem Mac?</h3><p>Die Mac-Fassung folgt, mit derselben Lizenz. Jetzt gibt es die KI-Tarnkappe für Windows 10 und 11.</p></div>
+    </div>
+  </section>
+
+  <section id="holen" class="abschluss">
+    <h2>KI-Tarnkappe holen</h2>
+    <p class="zwischen">Such dir aus, was besser zu dir passt. Alle Updates sind immer dabei.</p>
+    <div class="preise" id="preise">
+      <div class="preis haupt">
+        <h3>Einmalig</h3>
+        <div class="summe">79&nbsp;€<span> einmal</span></div>
+        <p>Einmal zahlen, dauerhaft nutzen. Alle Updates inklusive.</p>
+        <a class="knopf" href="https://www.digistore24.com/product/768236?plan=1567492">79 € einmalig kaufen</a>
+      </div>
+      <div class="preis">
+        <h3>Im Jahr</h3>
+        <div class="summe">29&nbsp;€<span> / Jahr</span></div>
+        <p>Für alle, die lieber klein anfangen. Jährlich kündbar.</p>
+        <a class="knopf zweit" href="https://www.digistore24.com/product/768236?plan=1567493">29 € im Jahr kaufen</a>
+      </div>
+    </div>
+    <p class="zwischen">Lieber erst ausprobieren? <a href="https://www.digistore24.com/product/768239">14 Tage gratis&nbsp;testen&nbsp;→</a></p>
+    <div class="klein">Windows 10 und 11 · Kauf und Zahlung laufen über Digistore24 · 14 Tage Widerrufsrecht</div>
+  </section>
+</main>
+
+<section class="schluss">
+  <div class="huelle">
+    <h2>Setz deinen Kunden die Tarnkappe auf</h2>
+    <p class="zwischen">Die KI hilft dir weiter wie bisher. Nur die Namen bleiben bei dir.</p>
+    <a class="knopf" href="https://www.digistore24.com/product/768239">14 Tage gratis testen</a>
+    <div class="schluss-punkte">
+      <span>Ohne Zahlungsdaten</span>
+      <span>Deine Kundendaten bleiben auf deinem Rechner</span>
+      <span>Updates kommen von selbst</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="huelle">
+    <div class="fuss-raster">
+      <div class="fuss-marke">
+        <a class="marke" href="#"><img src="bilder/logo.png" alt="">KI-Tarnkappe</a>
+        <p>Kundendaten anonymisieren für ChatGPT und Claude. Deine Daten bleiben auf deinem Rechner.</p>
+      </div>
+      <div>
+        <h4>Produkt</h4>
+        <ul>
+          <li><a href="#so-gehts">So geht es</a></li>
+          <li><a href="#funktionen">Funktionen</a></li>
+          <li><a href="#preise">Preise</a></li>
+          <li><a href="https://www.digistore24.com/product/768239">Gratis testen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hilfe</h4>
+        <ul>
+          <li><a href="#einrichten">Einrichten</a></li>
+          <li><a href="#tasten">Tasten</a></li>
+          <li><a href="#fragen">Häufige Fragen</a></li>
+          <li><a href="mailto:support@top-effektiv.de">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fuss-zeile">
+      <span>© 2026 TOP effektiv · Kauf und Zahlung über Digistore24</span>
+      <span>Die KI-Tarnkappe hilft beim Datenschutz. Bitte vor dem Einfügen kurz drüberschauen.</span>
+      <span>Die genannten Marken gehören ihren Inhabern.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Partner-Link (?aff=ID): Kauf-Knöpfe bekommen die ID mit, damit Digistore24 den Kauf dem Partner zuordnet.
+  // Ohne Cookie, ohne fremdes Skript: gespeichert wird nichts
+  (function () {
+    var aff = new URLSearchParams(location.search).get('aff') || '';
+    if (!/^[A-Za-z0-9_.-]{2,40}$/.test(aff)) return;
+    document.querySelectorAll('a[href*="digistore24.com/product/768236"], a[href*="digistore24.com/product/768239"]').forEach(function (a) {
+      a.href += (a.href.indexOf('?') < 0 ? '?' : '&') + 'aff=' + encodeURIComponent(aff);
+    });
+  })();
+</script>
+
+</body>
+</html>
