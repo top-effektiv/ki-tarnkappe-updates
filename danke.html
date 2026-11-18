@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KI-Tarnkappe freigeschaltet</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="bilder/logo.png">
+<link rel="stylesheet" href="kauf.css?v=1">
+</head>
+<body>
+<main>
+  <a class="marke" href="./"><img src="bilder/logo.png" alt="">KI-Tarnkappe</a>
+
+  <h1 data-mit-name="Danke, {n}! Die KI-Tarnkappe gehört dir.">Danke, die KI-Tarnkappe gehört dir.</h1>
+  <p class="unter">Vier Schritte, dann arbeitest du mit der KI, ohne dass sie deine Kundendaten sieht.</p>
+
+  <div class="karte">
+    <h2><span class="nr">1</span>KI-Tarnkappe herunterladen</h2>
+    <p>Lade die Datei herunter und öffne sie. Die Installation dauert eine halbe Minute.</p>
+    <a class="knopf" href="KI-Tarnkappe-Setup.exe" download><svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="currentColor"><path d="M3 5.6l7.4-1v7H3zM11.4 4.5L21 3.2v8.4h-9.6zM3 12.4h7.4v7.1L3 18.4zM11.4 12.4H21v8.4l-9.6-1.3z"/></svg>Für Windows herunterladen</a>
+    <p class="klein" style="margin-top:12px">Windows 10 und 11. Die Mac-Fassung folgt, deine Lizenz gilt dann auch dort.</p>
+    <p class="klein" style="margin-top:14px">Gerade am Handy? Öffne deine Bestellmail von Digistore24 am Computer und klick dort auf den ersten Zugangs-Link. Dann bist du wieder hier.</p>
+  </div>
+
+  <div class="karte">
+    <h2><span class="nr">2</span>Windows warnt dich, das ist normal</h2>
+    <p>Windows kennt neue Programme noch nicht und zeigt deshalb meist diese blaue Meldung. So geht es weiter:</p>
+    <video class="film" autoplay muted loop playsinline preload="metadata" poster="bilder/windows-warnung.jpg" width="1120" height="640" aria-label="Klick auf Weitere Informationen, danach auf Trotzdem ausführen">
+      <source src="bilder/windows-warnung.mp4" type="video/mp4">
+    </video>
+    <p class="klein">Vereinfacht nachgezeichnet. Keine Meldung bei dir? Dann geht es direkt weiter.</p>
+  </div>
+
+  <div class="karte" id="k-freischalten">
+    <h2><span class="nr">3</span>KI-Tarnkappe freischalten</h2>
+    <p>Beim ersten Start fragt die KI-Tarnkappe nach diesen zwei Angaben. Einfach kopieren und einfügen.</p>
+    <div id="freischalten" hidden>
+      <div class="wert"><span>Bestellnummer</span><code id="wert-b"></code><button type="button" data-feld="wert-b">Kopieren</button></div>
+      <div class="wert"><span>Lizenzschlüssel</span><code id="wert-k"></code><button type="button" data-feld="wert-k">Kopieren</button></div>
+    </div>
+    <p class="klein" style="margin-top:12px">Beides steht auch in deiner Bestellmail von Digistore24.</p>
+    <p>Danach fragt sie nach deinem Namen und deiner Firma. So weiß sie, dass sie dich selbst nie unkenntlich machen muss.</p>
+  </div>
+
+  <div class="karte">
+    <h2><span class="nr">4</span>Das erste Mal mit der KI</h2>
+    <p>Markiere einen Text mit Kundendaten und kopiere ihn. Dann drückst du <span class="taste">Strg</span> + <span class="taste">Alt</span> + <span class="taste">A</span> und fügst ihn bei ChatGPT, Claude oder jeder anderen KI ein. Aus Anna Schulze wird dort [Kunde A].</p>
+    <p>Die Antwort der KI kopierst du, drückst <span class="taste">Strg</span> + <span class="taste">Alt</span> + <span class="taste">N</span> und fügst sie in deine Mail ein. Jetzt stehen wieder die echten Namen drin.</p>
+    <p class="klein">Arbeitest du mit der Claude-App? Dann geht es noch bequemer: In der KI-Tarnkappe unter <b>„Mit KI verbinden“</b> verbindest du beide mit einem Klick, und du musst gar nichts mehr kopieren. Den Rest zeigt dir die KI-Tarnkappe selbst unter <b>„Erste Schritte“</b>.</p>
+  </div>
+
+  <div class="gruss">
+    <img src="bilder/norbert-kloiber.jpg" width="84" height="84" alt="Norbert Kloiber">
+    <div>
+      <p class="gruss-text" data-mit-name="Das war es, {n}! Ich wünsche dir viel Freude bei der Arbeit mit der KI, und deinen Kunden die Sicherheit, die sie verdienen.">Das war es! Ich wünsche dir viel Freude bei der Arbeit mit der KI, und deinen Kunden die Sicherheit, die sie verdienen.</p>
+      <p class="gruss-name">Herzliche Grüße</p>
+      <img class="gruss-unterschrift" src="bilder/unterschrift-norbert.png" width="280" height="105" alt="Unterschrift von Norbert Kloiber">
+      <p class="gruss-name">Norbert Kloiber</p>
+    </div>
+  </div>
+
+  <p class="zweig">Etwas hakt? Schreib an <a href="mailto:digistore@topeffektiv.zohodesk.eu">digistore@topeffektiv.zohodesk.eu</a>, wir helfen dir.</p>
+
+  <footer>
+    <a href="./">Zur KI-Tarnkappe</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a><br>
+    Die Abbuchung erfolgt durch Digistore24.com.
+  </footer>
+  <script>
+  // Testzeit (t=1, Produkt „KI-Tarnkappe – 14 Tage gratis testen“): andere Überschrift, Hinweis auf die 14 Tage
+  (function () {
+    if (new URLSearchParams(location.search).get("t") !== "1") return;
+    var h = document.querySelector("h1");
+    h.dataset.mitName = "Schön, {n}! Du testest die KI-Tarnkappe jetzt 14 Tage gratis.";
+    h.textContent = "Schön! Du testest die KI-Tarnkappe jetzt 14 Tage gratis.";
+    var hinweis = document.createElement("p");
+    hinweis.className = "klein";
+    hinweis.style.marginTop = "12px";
+    hinweis.textContent = "In den 14 Tagen kannst du alles nutzen. Danach fragt die KI-Tarnkappe nach einer Bestellung. " +
+      "Gefällt sie dir, holst du sie mit einem Klick im Programm und trägst die neue Bestellung ein.";
+    document.querySelector("#k-freischalten p").after(hinweis);
+    var g = document.querySelector(".gruss-text");
+    g.dataset.mitName = "Das war es, {n}! Viel Freude beim Ausprobieren.";
+    g.textContent = "Das war es! Viel Freude beim Ausprobieren.";
+  })();
+
+  // Vorname (n) kommt von Digistore in der Adresse. Fehlt er, bleiben die neutralen Texte
+  (function () {
+    var n = (new URLSearchParams(location.search).get("n") || "").trim();
+    if (!n || n.charAt(0) === "[" || n.length > 30) return;
+    if (n === n.toLowerCase() || n === n.toUpperCase()) n = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+    document.querySelectorAll("[data-mit-name]").forEach(function (el) {
+      el.textContent = el.dataset.mitName.split("{n}").join(n);
+    });
+  })();
+
+  // Digistore hängt Bestellnummer (b) und Lizenzschlüssel (k) an die Adresse
+  (function () {
+    var p = new URLSearchParams(location.search), b = p.get("b"), k = p.get("k");
+    if (!b || !k || b.charAt(0) === "[") return;
+    document.getElementById("wert-b").textContent = b;
+    document.getElementById("wert-k").textContent = k;
+    document.getElementById("freischalten").hidden = false;
+    document.querySelectorAll(".wert button").forEach(function (knopf) {
+      knopf.addEventListener("click", function () {
+        navigator.clipboard.writeText(document.getElementById(knopf.dataset.feld).textContent).then(function () {
+          knopf.textContent = "Kopiert ✓";
+          setTimeout(function () { knopf.textContent = "Kopieren"; }, 1800);
+        });
+      });
+    });
+  })();
+  </script>
+</main>
+</body>
+</html>
