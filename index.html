@@ -84,7 +84,7 @@
             border-radius: 14px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.08); }
   .buehne .leiste { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; border-bottom: 1px solid var(--linie); }
   .buehne .leiste i { width: 11px; height: 11px; border-radius: 50%; background: #DDD; display: block; }
-  .buehne img { display: block; width: 100%; height: auto; }
+  .buehne img, .buehne video { display: block; width: 100%; height: auto; }
   .bildtext { text-align: center; color: var(--leise); font-size: 14px; margin: 12px 0 0; }
 
   /* Abschnitte */
@@ -196,9 +196,9 @@
 
   <div class="buehne">
     <div class="leiste"><i></i><i></i><i></i></div>
-    <img src="bilder/ki-tarnkappe-ausschnitt.png" width="942" height="594" alt="Die KI-Tarnkappe: links die Kundenmail, rechts das, was die KI sieht: Namen und Nummern als Platzhalter">
+    <video src="bilder/ki-tarnkappe-film.mp4" poster="bilder/ki-tarnkappe-film.jpg" width="1280" height="720" autoplay muted loop playsinline preload="metadata" aria-label="Kurzfilm: Eine Kundenmail und eine Gesprächsnotiz werden getarnt, die KI sieht nur Platzhalter, die echten Namen kommen zurück"></video>
   </div>
-  <p class="bildtext">Beispiel mit erfundenen Daten: Aus Anna Schulze wird <span class="platzhalter">[Kunde A]</span>, aus der Policennummer <span class="platzhalter">[Police A]</span>. Beträge bleiben stehen.</p>
+  <p class="bildtext">Beispiel mit erfundenen Daten: Namen, Nummern und Adressen werden zu Platzhaltern wie <span class="platzhalter">[Kunde A]</span>. Beträge bleiben stehen.</p>
   <div class="vertrauen"><span>🔒 Deine Kundendaten verlassen nie deinen Rechner</span><span>⟳ Updates kommen von selbst</span><span>Von TOP effektiv</span></div>
 
   <section id="so-gehts">
