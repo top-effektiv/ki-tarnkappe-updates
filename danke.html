@@ -121,6 +121,12 @@
     if (!b || !k || b.charAt(0) === "[") return;
     document.getElementById("wert-b").textContent = b;
     document.getElementById("wert-k").textContent = k;
+    // Testversion über einen Partner (a): die ID wandert mit der Bestellnummer ins Programm,
+    // damit der spätere Kauf dort dem Partner gutgeschrieben wird
+    var a = p.get("a") || "";
+    if (p.get("t") === "1" && /^[A-Za-z0-9_.\-]{2,40}$/.test(a)) {
+      document.getElementById("wert-b").textContent = b + " (Partner: " + a + ")";   // offen sichtbar, nichts Verstecktes
+    }
     document.getElementById("freischalten").hidden = false;
     document.querySelectorAll(".wert button").forEach(function (knopf) {
       knopf.addEventListener("click", function () {

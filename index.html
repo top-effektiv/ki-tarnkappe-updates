@@ -377,6 +377,9 @@
     if (!/^[A-Za-z0-9_.-]{2,40}$/.test(aff)) return;
     document.querySelectorAll('a[href*="digistore24.com/product/768236"], a[href*="digistore24.com/product/768239"]').forEach(function (a) {
       a.href += (a.href.indexOf('?') < 0 ? '?' : '&') + 'aff=' + encodeURIComponent(aff);
+      // Testversion: die ID zusätzlich ins freie Digistore-Feld „custom“. Digistore gibt sie an die
+      // Danke-Seite weiter (a=[CUSTOM]), so merkt sich das Programm den Partner für den späteren Kauf
+      if (a.href.indexOf('/product/768239') >= 0) a.href += '&custom=' + encodeURIComponent(aff);
     });
   })();
 </script>
