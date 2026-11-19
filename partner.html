@@ -35,6 +35,14 @@
   .fragen p { margin: 10px 0 0; color: var(--leise); }
   .zweig { color: var(--leise); margin-top: 28px; }
   main > footer { margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--linie); font-size: 14px; color: var(--leise); }
+  .neu { border: 1px solid var(--linie); border-radius: 10px; padding: 10px 14px; margin: 0 0 14px; background: var(--grund); }
+  .neu summary { cursor: pointer; font-weight: 600; color: var(--rot); }
+  .neu-inhalt { display: grid; grid-template-columns: 200px 1fr; gap: 18px; align-items: start; margin-top: 12px; }
+  .neu-inhalt img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--linie); }
+  .neu-inhalt ol { margin: 0; padding-left: 20px; color: var(--leise); font-size: 15px; }
+  .neu-inhalt li { margin-bottom: 6px; }
+  .neu-inhalt .klein { grid-column: 1 / -1; margin: 0; }
+  @media (max-width: 640px) { .neu-inhalt { grid-template-columns: 1fr; } .neu-inhalt img { max-width: 260px; } }
   @media (max-width: 640px) { .schritte { grid-template-columns: 1fr; } .schritt svg { height: 70px; } }
 </style>
 </head>
@@ -70,6 +78,20 @@
   <div class="karte" id="link">
     <h2>Hol dir deinen Link</h2>
     <p>Noch nicht angemeldet? <a href="https://www.digistore24.com/signup/768236,768239/" target="_blank" rel="noopener">Hier bei Digistore24 als Partner für die KI-Tarnkappe anmelden</a>. Danach gib deine Digistore24-ID ein. Sie steht in Digistore24 oben rechts bei deinem Namen.</p>
+    <details class="neu">
+      <summary>Noch nie bei Digistore24? So geht die Anmeldung</summary>
+      <div class="neu-inhalt">
+        <img src="bilder/partner-digistore-anmeldung.jpg" alt="Anmeldung bei Digistore24: oben „Bewerben, als Affiliate verdienen“ auswählen" width="370" height="500">
+        <ol>
+          <li>Ein Fenster zu Cookies erscheint: <b>„Nur notwendige“</b> reicht.</li>
+          <li>Bei „Ich möchte …“ auf <b>„Bewerben“</b> klicken (Als Affiliate verdienen). Nicht „Verkaufen“.</li>
+          <li>Vorname, Nachname, Mail und ein Passwort eintragen, dann <b>„Weiter“</b>.</li>
+          <li>Bei <b>„Öffentliche ID“</b> denkst du dir deinen Namen bei Digistore24 aus, zum Beispiel deinen Nachnamen. Das ist deine Digistore24-ID, merk sie dir: Sie kommt gleich in deinen Link.</li>
+          <li>Land wählen, den Nutzungsbedingungen zustimmen, <b>„Konto erstellen“</b>. Die Marketing-Mails von Digistore24 kannst du leer lassen.</li>
+        </ol>
+        <p class="klein">Fertig. Du bist damit gleich Partner für die KI-Tarnkappe und trägst deine ID unten ein.</p>
+      </div>
+    </details>
     <div class="eingabe"><input id="id" type="text" placeholder="Deine Digistore24-ID" autocomplete="off" spellcheck="false"></div>
     <div class="link-zeile" id="link-zeile"><span id="mein-link"></span><button type="button" id="kopieren">Kopieren</button></div>
     <p class="klein" style="margin-top:12px">Wer über diesen Link testet oder kauft, wird dir zugeordnet. Die ID wird nirgends gespeichert, der Link entsteht nur hier in deinem Browser.</p>
