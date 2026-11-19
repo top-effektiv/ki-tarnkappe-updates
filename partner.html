@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KI-Tarnkappe Partner werden</title>
+<meta name="description" content="Die KI-Tarnkappe weiterempfehlen und 20 % von jedem Kauf bekommen. Kostenlos, in zwei Minuten eingerichtet, abgerechnet über Digistore24.">
+<link rel="icon" href="bilder/logo.png">
+<link rel="stylesheet" href="kauf.css?v=2">
+<style>
+  .eingabe { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 4px 0 12px; }
+  .eingabe input { flex: 1 1 220px; font: inherit; font-size: 16px; padding: 10px 14px; border: 1px solid var(--linie);
+                   border-radius: 10px; background: var(--karte); color: var(--text); }
+  .eingabe input:focus { outline: none; border-color: var(--rot); }
+  #mein-link { font-family: Consolas, monospace; font-size: 15px; overflow-wrap: anywhere; }
+  .link-zeile { display: none; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 10px 0 0;
+                border-top: 1px solid var(--linie); }
+  .link-zeile.da { display: grid; }
+  .link-zeile button { font: inherit; font-size: 14px; padding: 5px 12px; border: 1px solid var(--linie); border-radius: 999px;
+                       background: transparent; color: var(--text); cursor: pointer; }
+  .abschnitt { font-size: 24px; margin: 34px 0 14px; letter-spacing: -.01em; }
+  .schritte { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 14px; }
+  .schritt { background: var(--karte); border: 1px solid var(--linie); border-radius: 12px; padding: 18px 18px 20px; }
+  .schritt svg { display: block; width: 100%; height: 84px; margin: 0 0 10px; }
+  .schritt .strich { fill: none; stroke: var(--text); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .schritt .akzent { fill: none; stroke: var(--rot); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .schritt .nr { width: 24px; height: 24px; font-size: 13px; background: var(--rot); color: #fff; }
+  .schritt h3 { font-size: 17px; margin: 8px 0 4px; }
+  .schritt p { margin: 0; color: var(--leise); font-size: 15px; }
+  .haken { list-style: none; margin: 0; padding: 0; }
+  .haken li { position: relative; padding: 6px 0 6px 30px; color: var(--leise); font-size: 16px; }
+  .haken li::before { content: "✓"; position: absolute; left: 4px; color: var(--rot); font-weight: 700; }
+  .fragen details { background: var(--karte); border: 1px solid var(--linie); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; }
+  .fragen summary { cursor: pointer; font-weight: 600; }
+  .fragen p { margin: 10px 0 0; color: var(--leise); }
+  .zweig { color: var(--leise); margin-top: 28px; }
+  main > footer { margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--linie); font-size: 14px; color: var(--leise); }
+  @media (max-width: 640px) { .schritte { grid-template-columns: 1fr; } .schritt svg { height: 70px; } }
+</style>
+</head>
+<body>
+<main>
+  <a class="marke" href="./"><img src="bilder/logo.png" alt=""><span class="marke-text">KI-Tarnkappe<small>Der KI-Anonymisierer</small></span></a>
+
+  <h1>Die KI-Tarnkappe empfehlen und mitverdienen</h1>
+  <p class="unter">Du kennst Kollegen, die mit KI arbeiten wollen, aber Kundendaten im Spiel haben? Dann bekommst du 20&nbsp;% von jedem Kauf über deinen Link. Kostenlos und in zwei Minuten eingerichtet.</p>
+
+  <h2 class="abschnitt">So funktioniert's</h2>
+  <div class="schritte">
+    <div class="schritt">
+      <svg viewBox="0 0 120 80" aria-hidden="true"><path class="strich" d="M18 64c10-6 20 4 30-2s14-10 22-4"/><path class="strich" d="M74 52 98 16l8 6-24 36-11 5z"/><path class="akzent" d="M98 16l8 6"/></svg>
+      <span class="nr">1</span>
+      <h3>Anmelden</h3>
+      <p>Bei Digistore24 als Partner für die KI-Tarnkappe anmelden. Kostenlos, du bist sofort freigeschaltet.</p>
+    </div>
+    <div class="schritt">
+      <svg viewBox="0 0 120 80" aria-hidden="true"><rect class="strich" x="22" y="30" width="40" height="20" rx="10"/><rect class="akzent" x="58" y="30" width="40" height="20" rx="10"/><path class="strich" d="M48 40h24"/></svg>
+      <span class="nr">2</span>
+      <h3>Link holen</h3>
+      <p>Deine Digistore24-ID unten eintragen, schon steht dein eigener Link da.</p>
+    </div>
+    <div class="schritt">
+      <svg viewBox="0 0 120 80" aria-hidden="true"><path class="strich" d="M20 42 100 14 76 66 60 48z"/><path class="strich" d="M60 48 100 14"/><path class="akzent" d="M60 48l-4 16 12-9"/></svg>
+      <span class="nr">3</span>
+      <h3>Weitergeben</h3>
+      <p>Per WhatsApp, Mail oder LinkedIn teilen. Die fertigen Texte findest du weiter unten.</p>
+    </div>
+  </div>
+
+  <div class="karte" id="link">
+    <h2>Hol dir deinen Link</h2>
+    <p>Noch nicht angemeldet? <a href="https://www.digistore24.com/signup/768236,768239/" target="_blank" rel="noopener">Hier bei Digistore24 als Partner für die KI-Tarnkappe anmelden</a>. Danach gib deine Digistore24-ID ein. Sie steht in Digistore24 oben rechts bei deinem Namen.</p>
+    <div class="eingabe"><input id="id" type="text" placeholder="Deine Digistore24-ID" autocomplete="off" spellcheck="false"></div>
+    <div class="link-zeile" id="link-zeile"><span id="mein-link"></span><button type="button" id="kopieren">Kopieren</button></div>
+    <p class="klein" style="margin-top:12px">Wer über diesen Link testet oder kauft, wird dir zugeordnet. Die ID wird nirgends gespeichert, der Link entsteht nur hier in deinem Browser.</p>
+  </div>
+
+  <h2 class="abschnitt">Fertige Texte zum Weitergeben</h2>
+  <div class="karte">
+    <p><b>Für WhatsApp</b></p>
+    <p class="vorlage" data-art="kurz">Ich arbeite jetzt mit der KI-Tarnkappe. Bevor ich einen Text an ChatGPT oder Claude gebe, drücke ich eine Taste, und aus meinen Kunden wird [Kunde A]. Danach kommen die echten Namen von selbst zurück. Alles bleibt auf meinem Rechner. Für DSGVO-bewusstes Arbeiten mit KI. 14 Tage gratis testen: <span class="lnk">https://ki-tarnkappe.com/</span></p>
+    <button type="button" class="knopf zweit kopier" data-ziel="kurz">Text kopieren</button>
+  </div>
+  <div class="karte">
+    <p><b>Für LinkedIn</b></p>
+    <p class="vorlage" data-art="beitrag">Viele in unserer Branche würden gern mit KI arbeiten. Was sie bremst: die Kundendaten. Ich nutze dafür die KI-Tarnkappe. Text kopieren, eine Taste, und Namen, Adressen, IBAN und Policennummern werden zu Platzhaltern wie [Kunde A]. Die KI arbeitet damit, und mit der zweiten Taste stehen die echten Namen wieder drin. Die Daten verlassen nie den Rechner. Für DSGVO-bewusstes Arbeiten mit KI. <span class="lnk">https://ki-tarnkappe.com/</span></p>
+    <button type="button" class="knopf zweit kopier" data-ziel="beitrag">Text kopieren</button>
+  </div>
+  <p class="klein" style="color:var(--leise)">Hast du oben deine ID eingetragen, steckt dein Link schon in den Texten.</p>
+
+  <h2 class="abschnitt">Für wen ist das?</h2>
+  <div class="karte">
+    <ul class="haken">
+      <li>Vermögensberater und Finanzdienstleister, die im Team gern zeigen, was funktioniert</li>
+      <li>Versicherungsmakler mit Kollegen-Netzwerk</li>
+      <li>Trainer und Berater, die anderen den Weg zur KI zeigen</li>
+      <li>Leiter von Gruppen, Communitys und Arbeitskreisen</li>
+    </ul>
+  </div>
+
+  <h2 class="abschnitt">Häufige Fragen</h2>
+  <div class="fragen">
+    <details><summary>Was kostet mich das?</summary><p>Nichts. Die Anmeldung bei Digistore24 ist kostenlos, du gehst keine Verpflichtung ein.</p></details>
+    <details><summary>Wie viel bekomme ich?</summary><p>20&nbsp;% von jedem Kauf über deinen Link. Digistore24 rechnet vom Betrag ohne Mehrwertsteuer und ohne seine Gebühr. Beim Einmalkauf sind das rund 12&nbsp;€.</p></details>
+    <details><summary>Bekomme ich auch etwas, wenn jemand das Abo verlängert?</summary><p>Ja. Bei jeder Verlängerung im Jahres-Abo bekommst du wieder deine 20&nbsp;%.</p></details>
+    <details><summary>Wann und wie bekomme ich mein Geld?</summary><p>Digistore24 rechnet die Provision ab und zahlt sie direkt an dich aus. Deine Verkäufe siehst du jederzeit in deinem Digistore24-Konto.</p></details>
+    <details><summary>Muss ich die KI-Tarnkappe selbst nutzen?</summary><p>Nein. Es hilft aber sehr: Wer erzählen kann, wofür er sie selbst nutzt, überzeugt am meisten.</p></details>
+  </div>
+
+  <p class="zweig">Fragen? Schreib mir: <a href="mailto:support@top-effektiv.de">support@top-effektiv.de</a></p>
+
+  <footer>
+    <a href="./">Zur KI-Tarnkappe</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+  </footer>
+</main>
+<script>
+  // Aus der Digistore24-ID den eigenen Link bauen und in die Texte setzen. Nichts wird gespeichert oder verschickt
+  (function () {
+    var basis = "https://ki-tarnkappe.com/";
+    var feld = document.getElementById("id"), zeile = document.getElementById("link-zeile"),
+        link = document.getElementById("mein-link"), knopf = document.getElementById("kopieren");
+    function setzen(adresse) {
+      document.querySelectorAll(".lnk").forEach(function (s) { s.textContent = adresse; });
+    }
+    feld.addEventListener("input", function () {
+      var id = feld.value.trim();
+      var gut = /^[A-Za-z0-9_.-]{2,40}$/.test(id);
+      var adresse = gut ? basis + "?aff=" + id : basis;
+      zeile.classList.toggle("da", gut);
+      link.textContent = gut ? adresse : "";
+      setzen(adresse);
+    });
+    function kopiere(text, k, alt) {
+      navigator.clipboard.writeText(text).then(function () {
+        k.textContent = "Kopiert ✓";
+        setTimeout(function () { k.textContent = alt; }, 1800);
+      });
+    }
+    knopf.addEventListener("click", function () { kopiere(link.textContent, knopf, "Kopieren"); });
+    document.querySelectorAll(".kopier").forEach(function (k) {
+      k.addEventListener("click", function () {
+        var p = document.querySelector('.vorlage[data-art="' + k.dataset.ziel + '"]');
+        kopiere(p.textContent.trim(), k, "Text kopieren");
+      });
+    });
+  })();
+</script>
+</body>
+</html>
