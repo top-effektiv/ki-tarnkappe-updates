@@ -42,6 +42,24 @@
   .neu-inhalt ol { margin: 0; padding-left: 20px; color: var(--leise); font-size: 15px; }
   .neu-inhalt li { margin-bottom: 6px; }
   .neu-inhalt .klein { grid-column: 1 / -1; margin: 0; }
+  .cta-zeile { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin: 0 0 30px; }
+  .leise-link { color: var(--leise); font-size: 15px; }
+  .schritt-block { background: var(--karte); border: 1px solid var(--linie); border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+  .schritt-block > p { color: var(--leise); margin: 0 0 14px; }
+  .schritt-kopf { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+  .schritt-kopf h2 { margin: 0; font-size: 21px; }
+  .gross-nr { flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--rot); color: #fff; font-weight: 700;
+              display: inline-flex; align-items: center; justify-content: center; font-size: 17px; }
+  .schritt-block > .knopf { margin-bottom: 14px; }
+  .tipp { background: var(--grund); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--leise); }
+  .reiter { display: flex; gap: 8px; margin: 4px 0 12px; flex-wrap: wrap; }
+  .reiter-knopf { font: inherit; font-size: 15px; padding: 7px 16px; border: 1px solid var(--linie); border-radius: 999px;
+                  background: transparent; color: var(--text); cursor: pointer; }
+  .reiter-knopf.aktiv { background: var(--rot); border-color: var(--rot); color: #fff; }
+  .vorlage-box { border: 1px solid var(--linie); border-radius: 10px; padding: 16px 18px; }
+  .vorlage-box .vorlage { margin: 0 0 14px; color: var(--text); }
+  .vorlage-box .knopf { font-size: 16px; padding: 10px 22px; }
+  html { scroll-behavior: smooth; }
   @media (max-width: 640px) { .neu-inhalt { grid-template-columns: 1fr; } .neu-inhalt img { max-width: 260px; } }
   @media (max-width: 640px) { .schritte { grid-template-columns: 1fr; } .schritt svg { height: 70px; } }
 </style>
@@ -52,32 +70,14 @@
 
   <h1>Die KI-Tarnkappe empfehlen und mitverdienen</h1>
   <p class="unter">Du kennst Kollegen, die mit KI arbeiten wollen, aber Kundendaten im Spiel haben? Dann bekommst du 20&nbsp;% von jedem Kauf über deinen Link. Kostenlos und in zwei Minuten eingerichtet.</p>
-
-  <h2 class="abschnitt">So funktioniert's</h2>
-  <div class="schritte">
-    <div class="schritt">
-      <svg viewBox="0 0 120 80" aria-hidden="true"><path class="strich" d="M18 64c10-6 20 4 30-2s14-10 22-4"/><path class="strich" d="M74 52 98 16l8 6-24 36-11 5z"/><path class="akzent" d="M98 16l8 6"/></svg>
-      <span class="nr">1</span>
-      <h3>Anmelden</h3>
-      <p>Bei Digistore24 als Partner für die KI-Tarnkappe anmelden. Kostenlos, du bist sofort freigeschaltet.</p>
-    </div>
-    <div class="schritt">
-      <svg viewBox="0 0 120 80" aria-hidden="true"><rect class="strich" x="22" y="30" width="40" height="20" rx="10"/><rect class="akzent" x="58" y="30" width="40" height="20" rx="10"/><path class="strich" d="M48 40h24"/></svg>
-      <span class="nr">2</span>
-      <h3>Link holen</h3>
-      <p>Deine Digistore24-ID unten eintragen, schon steht dein eigener Link da.</p>
-    </div>
-    <div class="schritt">
-      <svg viewBox="0 0 120 80" aria-hidden="true"><path class="strich" d="M20 42 100 14 76 66 60 48z"/><path class="strich" d="M60 48 100 14"/><path class="akzent" d="M60 48l-4 16 12-9"/></svg>
-      <span class="nr">3</span>
-      <h3>Weitergeben</h3>
-      <p>Per WhatsApp, Mail oder LinkedIn teilen. Die fertigen Texte findest du weiter unten.</p>
-    </div>
+  <div class="cta-zeile">
+    <a class="leise-link" href="#schritt-2">Schon bei Digistore24 angemeldet? Weiter zu Schritt 2 ↓</a>
   </div>
 
-  <div class="karte" id="link">
-    <h2>Hol dir deinen Link</h2>
-    <p>Noch nicht angemeldet? <a href="https://www.digistore24.com/signup/768236,768239/" target="_blank" rel="noopener">Hier bei Digistore24 als Partner für die KI-Tarnkappe anmelden</a>. Danach gib deine Digistore24-ID ein. Sie steht in Digistore24 oben rechts bei deinem Namen.</p>
+  <section class="schritt-block" id="schritt-1">
+    <div class="schritt-kopf"><span class="gross-nr">1</span><h2>Bei Digistore24 anmelden</h2></div>
+    <p>Digistore24 zahlt dir die Provision aus. Die Anmeldung ist kostenlos, und du bist sofort Partner für die KI-Tarnkappe.</p>
+    <a class="knopf" href="https://www.digistore24.com/signup/768236,768239/" target="_blank" rel="noopener">Kostenlos Partner werden</a>
     <details class="neu">
       <summary>Noch nie bei Digistore24? So geht die Anmeldung</summary>
       <div class="neu-inhalt">
@@ -86,27 +86,33 @@
           <li>Ein Fenster zu Cookies erscheint: <b>„Nur notwendige“</b> reicht.</li>
           <li>Bei „Ich möchte …“ auf <b>„Bewerben“</b> klicken (Als Affiliate verdienen). Nicht „Verkaufen“.</li>
           <li>Vorname, Nachname, Mail und ein Passwort eintragen, dann <b>„Weiter“</b>.</li>
-          <li>Bei <b>„Öffentliche ID“</b> denkst du dir deinen Namen bei Digistore24 aus, zum Beispiel deinen Nachnamen. Das ist deine Digistore24-ID, merk sie dir: Sie kommt gleich in deinen Link.</li>
+          <li>Bei <b>„Öffentliche ID“</b> denkst du dir deinen Namen bei Digistore24 aus, zum Beispiel deinen Nachnamen. Das ist deine Digistore24-ID, merk sie dir: Du brauchst sie gleich in Schritt 2.</li>
           <li>Land wählen, den Nutzungsbedingungen zustimmen, <b>„Konto erstellen“</b>. Die Marketing-Mails von Digistore24 kannst du leer lassen.</li>
         </ol>
-        <p class="klein">Fertig. Du bist damit gleich Partner für die KI-Tarnkappe und trägst deine ID unten ein.</p>
       </div>
     </details>
+  </section>
+
+  <section class="schritt-block" id="schritt-2">
+    <div class="schritt-kopf"><span class="gross-nr">2</span><h2>Deinen Link holen</h2></div>
+    <p>Trag deine Digistore24-ID ein. Du findest sie in Digistore24 oben rechts bei deinem Namen.</p>
     <div class="eingabe"><input id="id" type="text" placeholder="Deine Digistore24-ID" autocomplete="off" spellcheck="false"></div>
     <div class="link-zeile" id="link-zeile"><span id="mein-link"></span><button type="button" id="kopieren">Kopieren</button></div>
-    <p class="klein" style="margin-top:12px">Wer über diesen Link testet oder kauft, wird dir zugeordnet. Die ID wird nirgends gespeichert, der Link entsteht nur hier in deinem Browser.</p>
-    <p class="klein"><b>Du nutzt die KI-Tarnkappe selbst?</b> Dann geht es noch leichter: Im Programm oben rechts auf „Weiterempfehlen“, ganz unten auf „Partnerprogramm“ und die ID eintragen. Ab dann steckt dein Link in jedem Text, den du über die KI-Tarnkappe verschickst.</p>
-  </div>
+    <p class="klein">Wer über diesen Link testet oder kauft, wird dir zugeordnet. Die ID wird nirgends gespeichert, der Link entsteht nur hier in deinem Browser.</p>
+    <div class="tipp"><b>Du nutzt die KI-Tarnkappe selbst?</b> Dann trag die ID einmal im Programm ein: oben rechts „Weiterempfehlen“, ganz unten „Partnerprogramm“. Ab dann steckt dein Link in jedem Text, den du über die KI-Tarnkappe verschickst.</div>
+  </section>
 
-  <h2 class="abschnitt">Fertige Texte zum Weitergeben</h2>
-  <div class="karte">
-    <p><b>Für WhatsApp</b></p>
-    <p class="vorlage" data-art="kurz">Ich arbeite jetzt mit der KI-Tarnkappe. Bevor ich einen Text an ChatGPT oder Claude gebe, drücke ich eine Taste, und aus meinen Kunden wird [Kunde A]. Danach kommen die echten Namen von selbst zurück. Alles bleibt auf meinem Rechner. Für DSGVO-bewusstes Arbeiten mit KI. 14 Tage gratis testen: <span class="lnk">https://ki-tarnkappe.com/</span></p>
-    <button type="button" class="knopf zweit kopier" data-ziel="kurz">Text kopieren</button>
-  </div>
-  <div class="karte">
-    <p><b>Für eine Mail</b></p>
-    <p class="vorlage" data-art="mail" style="white-space: pre-line">Betreff: Tipp: KI nutzen, ohne Kundendaten preiszugeben
+  <section class="schritt-block" id="schritt-3">
+    <div class="schritt-kopf"><span class="gross-nr">3</span><h2>Weitergeben</h2></div>
+    <p>Such dir aus, wo du es teilst. Der Text ist fertig, <span id="hinweis-link">dein Link kommt hinein, sobald du in Schritt 2 deine ID eingetragen hast.</span></p>
+    <div class="reiter" role="tablist">
+      <button type="button" class="reiter-knopf aktiv" data-ziel="kurz">WhatsApp</button>
+      <button type="button" class="reiter-knopf" data-ziel="mail">Mail</button>
+      <button type="button" class="reiter-knopf" data-ziel="beitrag">LinkedIn</button>
+    </div>
+    <div class="vorlage-box">
+      <p class="vorlage" data-art="kurz">Ich arbeite jetzt mit der KI-Tarnkappe. Bevor ich einen Text an ChatGPT oder Claude gebe, drücke ich eine Taste, und aus meinen Kunden wird [Kunde A]. Danach kommen die echten Namen von selbst zurück. Alles bleibt auf meinem Rechner. Für DSGVO-bewusstes Arbeiten mit KI. 14 Tage gratis testen: <span class="lnk">https://ki-tarnkappe.com/</span></p>
+      <p class="vorlage" data-art="mail" hidden style="white-space: pre-line">Betreff: Tipp: KI nutzen, ohne Kundendaten preiszugeben
 
 [Vorname],
 
@@ -118,14 +124,10 @@ Für DSGVO-bewusstes Arbeiten mit KI. Du kannst sie 14 Tage gratis testen: <span
 
 Herzliche Grüße
 [Dein Name]</p>
-    <button type="button" class="knopf zweit kopier" data-ziel="mail">Text kopieren</button>
-  </div>
-  <div class="karte">
-    <p><b>Für LinkedIn</b></p>
-    <p class="vorlage" data-art="beitrag">Viele in unserer Branche würden gern mit KI arbeiten. Was sie bremst: die Kundendaten. Ich nutze dafür die KI-Tarnkappe. Text kopieren, eine Taste, und Namen, Adressen, IBAN und Policennummern werden zu Platzhaltern wie [Kunde A]. Die KI arbeitet damit, und mit der zweiten Taste stehen die echten Namen wieder drin. Die Daten verlassen nie den Rechner. Für DSGVO-bewusstes Arbeiten mit KI. <span class="lnk">https://ki-tarnkappe.com/</span></p>
-    <button type="button" class="knopf zweit kopier" data-ziel="beitrag">Text kopieren</button>
-  </div>
-  <p class="klein" style="color:var(--leise)">Hast du oben deine ID eingetragen, steckt dein Link schon in den Texten.</p>
+      <p class="vorlage" data-art="beitrag" hidden>Viele in unserer Branche würden gern mit KI arbeiten. Was sie bremst: die Kundendaten. Ich nutze dafür die KI-Tarnkappe. Text kopieren, eine Taste, und Namen, Adressen, IBAN und Policennummern werden zu Platzhaltern wie [Kunde A]. Die KI arbeitet damit, und mit der zweiten Taste stehen die echten Namen wieder drin. Die Daten verlassen nie den Rechner. Für DSGVO-bewusstes Arbeiten mit KI. <span class="lnk">https://ki-tarnkappe.com/</span></p>
+      <button type="button" class="knopf" id="text-kopieren">Text kopieren</button>
+    </div>
+  </section>
 
   <h2 class="abschnitt">Für wen ist das?</h2>
   <div class="karte">
@@ -168,6 +170,7 @@ Herzliche Grüße
       zeile.classList.toggle("da", gut);
       link.textContent = gut ? adresse : "";
       setzen(adresse);
+      document.getElementById("hinweis-link").textContent = gut ? "dein Link steckt schon drin." : "dein Link kommt hinein, sobald du in Schritt 2 deine ID eingetragen hast.";
     });
     function kopiere(text, k, alt) {
       navigator.clipboard.writeText(text).then(function () {
@@ -176,11 +179,17 @@ Herzliche Grüße
       });
     }
     knopf.addEventListener("click", function () { kopiere(link.textContent, knopf, "Kopieren"); });
-    document.querySelectorAll(".kopier").forEach(function (k) {
-      k.addEventListener("click", function () {
-        var p = document.querySelector('.vorlage[data-art="' + k.dataset.ziel + '"]');
-        kopiere(p.textContent.trim(), k, "Text kopieren");
+    var aktiv = "kurz", textKnopf = document.getElementById("text-kopieren");
+    document.querySelectorAll(".reiter-knopf").forEach(function (r) {
+      r.addEventListener("click", function () {
+        aktiv = r.dataset.ziel;
+        document.querySelectorAll(".reiter-knopf").forEach(function (x) { x.classList.toggle("aktiv", x === r); });
+        document.querySelectorAll(".vorlage").forEach(function (v) { v.hidden = v.dataset.art !== aktiv; });
       });
+    });
+    textKnopf.addEventListener("click", function () {
+      var p = document.querySelector('.vorlage[data-art="' + aktiv + '"]');
+      kopiere(p.textContent.trim(), textKnopf, "Text kopieren");
     });
   })();
 </script>
